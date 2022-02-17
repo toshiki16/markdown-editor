@@ -33,8 +33,8 @@
   right: 0;
   top: 0;
   width: 50vw;
-`,Be=(function(t){for(var n=arguments.length,r=new Array(n>1?n-1:0),a=1;a<n;a++)r[a-1]=arguments[a];var l=be.apply(void 0,[t].concat(r)),o="sc-global-"+xe(JSON.stringify(l)),i=new Ie(l,o);function u(t){var n=ie(),r=ue(),a=(0,e.useContext)(Te),l=(0,e.useRef)(n.allocateGSInstance(o)).current;return n.server&&s(l,t,n,a,r),(0,e.useLayoutEffect)((function(){if(!n.server)return s(l,t,n,a,r),function(){return i.removeStyles(l,n)}}),[l,t,n,a,r]),null}function s(e,t,n,r,a){if(i.isStatic)i.renderStyles(e,C,n,a);else{var l=h({},t,{theme:we(t,r,u.defaultProps)});i.renderStyles(e,l,n,a)}}return e.memo(u)})`
+`,Be="pages/editor:text",Ve=(function(t){for(var n=arguments.length,r=new Array(n>1?n-1:0),a=1;a<n;a++)r[a-1]=arguments[a];var l=be.apply(void 0,[t].concat(r)),o="sc-global-"+xe(JSON.stringify(l)),i=new Ie(l,o);function u(t){var n=ie(),r=ue(),a=(0,e.useContext)(Te),l=(0,e.useRef)(n.allocateGSInstance(o)).current;return n.server&&s(l,t,n,a,r),(0,e.useLayoutEffect)((function(){if(!n.server)return s(l,t,n,a,r),function(){return i.removeStyles(l,n)}}),[l,t,n,a,r]),null}function s(e,t,n,r,a){if(i.isStatic)i.renderStyles(e,C,n,a);else{var l=h({},t,{theme:we(t,r,u.defaultProps)});i.renderStyles(e,l,n,a)}}return e.memo(u)})`
     body * {
         box-sizing: border-box;
     }
-`,Ve=e.createElement(e.Fragment,null,e.createElement(Be,null),e.createElement((()=>{const[t,n]=De("");return e.createElement(e.Fragment,null,e.createElement(Fe,null,"Markdown Editor no editorfile in."),e.createElement(je,null,e.createElement($e,{onChange:e=>{n(e.target.value)},value:t}),e.createElement(Ue,null,"プレビューエリア")))}),null));(0,n.render)(Ve,document.getElementById("app"))})()})();
+`,He=e.createElement(e.Fragment,null,e.createElement(Ve,null),e.createElement((()=>{const[t,n]=De(localStorage.getItem(Be)||"");return e.createElement(e.Fragment,null,e.createElement(Fe,null,"Markdown Editor no editorfile in."),e.createElement(je,null,e.createElement($e,{onChange:e=>{const t=e.target.value;localStorage.setItem(Be,t),n(t)},value:t}),e.createElement(Ue,null,"プレビューエリア")))}),null));(0,n.render)(He,document.getElementById("app"))})()})();
