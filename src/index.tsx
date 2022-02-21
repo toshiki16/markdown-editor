@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { render } from 'react-dom'
-import styled from 'styled-components'
+// import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
 import { Editor } from './pages/editor'
 
@@ -20,15 +20,3 @@ const Main = (
 
 
 render(Main, document.getElementById('app'))
-
-
-
-
-
-
-
-// const log = (message: string): void => {
-//     console.log(message)
-// }
-
-// log('Hello, Webpack + TypeScript!')
