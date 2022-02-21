@@ -37,4 +37,4 @@
     body * {
         box-sizing: border-box;
     }
-`,Io=r.createElement(r.Fragment,null,r.createElement(Lo,null),r.createElement((()=>{const[e,t]=((e,t)=>{const[n,o]=(0,r.useState)(localStorage.getItem(t)||"");return[n,e=>{o(e),localStorage.setItem(t,e)}]})(0,"pages/editor:text");return r.createElement(r.Fragment,null,r.createElement(Ao,null,"Markdown Editor no editorfile in."),r.createElement(To,null,r.createElement(Oo,{onChange:e=>t(e.target.value),value:e}),r.createElement(Fo,null,"プレビュー",r.createElement(_o,{children:e}))))}),null));(0,o.render)(Io,document.getElementById("app"))})()})();
+`,Io=r.createElement(r.Fragment,null,r.createElement(Lo,null),r.createElement((()=>{const[e,t]=((e,t)=>{const[n,o]=(0,r.useState)(localStorage.getItem(t)||"");return[n,e=>{o(e),localStorage.setItem(t,e)}]})(0,"pages/editor:text");return r.createElement(r.Fragment,null,r.createElement(Ao,null,"PC用のメモ帳的なの。#(半角空欄)、-(半角空欄)の後にテキスト書くと..."),r.createElement(To,null,r.createElement(Oo,{onChange:e=>t(e.target.value),value:e}),r.createElement(Fo,null,"プレビュー",r.createElement(_o,{children:e}))))}),null));(0,o.render)(Io,document.getElementById("app"))})()})();

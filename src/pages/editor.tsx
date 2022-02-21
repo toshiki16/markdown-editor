@@ -56,7 +56,7 @@ export const Editor: React.FC = () => {
   return (
     <>
       <Header>
-        Markdown Editor no editorfile in.
+        PC用のメモ帳的なの。#(半角空欄)、-(半角空欄)の後にテキスト書くと...
       </Header>
       <Wrapper>
         <TextArea
