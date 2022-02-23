@@ -6,35 +6,22 @@ import { putMemo } from '../indexeddb/memos'
 import { Button } from '../components/button'
 import { SaveModal } from '../components/save_modal'
 import { Link } from 'react-router-dom'
+import { Header } from '../components/header'
 
 const { useState } = React
 
-const Header = styled.header`
-  align-content: center;
-  display: flex;
-  font-size: 1.5rem;
-  height: 2rem;
-  justfy-content: space-between;
-  left: 0;
-  line-height: 2rem;
-  padding: 0.5rem 1rem;
+const Wrapper = styled.div`
+bottom: 0;  
+left: 0;
+  position: fixed;
+  right: 0;
+top: 3rem;
+`
+const HeaderArea = styled.div`
   position: fixed;
   right: 0;
   top: 0;
-`
-
-const HeaderControl = styled.div`
-  height: 2rem;
-  display: flex;
-  align-content: center;
-`
-
-const Wrapper = styled.div`
-  bottom: 0;
   left: 0;
-  position: fixed;
-  right: 0;
-  top: 3rem;
 `
 
 const TextArea = styled.textarea`
@@ -60,28 +47,28 @@ const Preview = styled.div`
   width: 50vw;
 `
 
-const StorageKey = 'pages/editor:text'
+interface props {
+  text: string
+  setText: (text: string) => void
+}
 
-
-
-export const Editor: React.FC = () => {
-  const [text, setText] = useStateWithStorage('', StorageKey)
+export const Editor: React.FC<props> = (props) => {
+  const { text, setText } = props
 
   const [showModal, setShowModal] = useState(false)
 
   return (
     <>
-      <Header>
-        PC用のメモ帳的なの。#(半角空欄)、-(半角空欄)の後にテキスト書くと...
-        <HeaderControl>
+      <HeaderArea>
+        <Header title="PC用のメモ帳的なの。#(半角空欄)、-(半角空欄)の後にテキスト書くと...">
           <Button onClick={() => setShowModal(true)}>
             保存する
           </Button>
           <Link to="/history">
             履歴を見る
           </Link>
-        </HeaderControl>
-      </Header>
+        </Header>
+      </HeaderArea>
       <Wrapper>
         <TextArea
           onChange={(event) => setText(event.target.value)}
