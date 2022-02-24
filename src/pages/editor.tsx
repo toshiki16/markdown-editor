@@ -1,15 +1,13 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { useStateWithStorage } from '../hooks/use_state_with_storage'
-import ReactMarkdown from 'react-markdown'
 import { putMemo } from '../indexeddb/memos'
 import { Button } from '../components/button'
 import { SaveModal } from '../components/save_modal'
 import { Link } from 'react-router-dom'
 import { Header } from '../components/header'
-import TestWorker from 'worker-loader!../worker/convert_markdown_worker'
+import ConvertMarkdownWorker from 'worker-loader!../worker/convert_markdown_worker'
 
-const testWorker = new TestWorker()
+const convertMarkdownWorker = new ConvertMarkdownWorker()
 const { useState, useEffect } = React
 
 
@@ -56,9 +54,12 @@ interface props {
   setText: (text: string) => void
 }
 
+
+
 export const Editor: React.FC<props> = (props) => {
   const { text, setText } = props
   const [showModal, setShowModal] = useState(false)
+  const [html, setHtml] = useState('')
 
   let count: number = 1
   while (count < 1_000_000_000) { // 最初から大きな値を入れないでください！
@@ -66,13 +67,13 @@ export const Editor: React.FC<props> = (props) => {
   }
 
   useEffect(() => {
-    testWorker.onmessage = (event) => {
-      console.log('Main thread Received:', event.data)
+    convertMarkdownWorker.onmessage = (event) => {
+      setHtml(event.data.html)
     }
   }, [])
 
   useEffect(() => {
-    testWorker.postMessage(text)
+    convertMarkdownWorker.postMessage(text)
   }, [text])
 
   return (
@@ -94,7 +95,7 @@ export const Editor: React.FC<props> = (props) => {
         />
         <Preview>
           プレビュー
-          <ReactMarkdown children={text} />
+          <div dangerouslySetInnerHTML={{ __html: html }} />
         </Preview>
       </Wrapper>
       {showModal && (
