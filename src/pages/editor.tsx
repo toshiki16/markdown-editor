@@ -7,8 +7,11 @@ import { Button } from '../components/button'
 import { SaveModal } from '../components/save_modal'
 import { Link } from 'react-router-dom'
 import { Header } from '../components/header'
+import TestWorker from 'worker-loader!../worker/convert_markdown_worker'
 
-const { useState } = React
+const testWorker = new TestWorker()
+const { useState, useEffect } = React
+
 
 const Wrapper = styled.div`
 bottom: 0;  
@@ -17,6 +20,7 @@ left: 0;
   right: 0;
 top: 3rem;
 `
+
 const HeaderArea = styled.div`
   position: fixed;
   right: 0;
@@ -54,8 +58,22 @@ interface props {
 
 export const Editor: React.FC<props> = (props) => {
   const { text, setText } = props
-
   const [showModal, setShowModal] = useState(false)
+
+  let count: number = 1
+  while (count < 1_000_000_000) { // 最初から大きな値を入れないでください！
+    count++
+  }
+
+  useEffect(() => {
+    testWorker.onmessage = (event) => {
+      console.log('Main thread Received:', event.data)
+    }
+  }, [])
+
+  useEffect(() => {
+    testWorker.postMessage(text)
+  }, [text])
 
   return (
     <>
