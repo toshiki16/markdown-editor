@@ -1,14 +1,13 @@
 import * as React from 'react'
 import { render } from 'react-dom'
-import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
-import { Editor } from './pages/editor'
 import {
     HashRouter as Router,
     Switch,
     Route,
     Redirect,
 } from 'react-router-dom'
+import { Editor } from './pages/editor'
 import { History } from './pages/history'
 import { useStateWithStorage } from './hooks/use_state_with_storage'
 

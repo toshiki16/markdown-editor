@@ -61,10 +61,7 @@ export const Editor: React.FC<props> = (props) => {
   const [showModal, setShowModal] = useState(false)
   const [html, setHtml] = useState('')
 
-  let count: number = 1
-  while (count < 1_000_000_000) { // 最初から大きな値を入れないでください！
-    count++
-  }
+
 
   useEffect(() => {
     convertMarkdownWorker.onmessage = (event) => {
