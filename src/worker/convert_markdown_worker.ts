@@ -1,5 +1,6 @@
 // import * as marked from 'marked'
-import * as sanitizeHtml from 'sanitize-html'
+//これはHTML構文を反映させない為にするもの
+// import * as sanitizeHtml from 'sanitize-html'
 const { marked } = require('marked')
 
 const worker: Worker = self as any
@@ -12,6 +13,7 @@ while (count < 1_000_000_000) { // 先程設定した値に合わせてくださ
 
 worker.addEventListener('message', (event) => {
     const text = event.data
-    const html = sanitizeHtml(marked(text), { allowedTags: [...sanitizeHtml.defaults.allowedTags, 'h1', 'h2'] })
+    const html = marked(text)
+    // const html = sanitizeHtml(marked(text), { allowedTags: [...sanitizeHtml.defaults.allowedTags, 'h1', 'h2'] })
     worker.postMessage({ html })
 })

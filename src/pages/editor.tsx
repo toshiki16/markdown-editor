@@ -76,7 +76,7 @@ export const Editor: React.FC<props> = (props) => {
   return (
     <>
       <HeaderArea>
-        <Header title="PC用のメモ帳的なの。#(半角空欄)、-(半角空欄)の後にテキスト書くと...">
+        <Header title="PC用のメモ帳的なの兼HTML反映型メモ。#(半角空欄)、-(半角空欄)の後にテキスト書くと...">
           <Button onClick={() => setShowModal(true)}>
             保存する
           </Button>
@@ -91,8 +91,22 @@ export const Editor: React.FC<props> = (props) => {
           value={text}
         />
         <Preview>
-          プレビュー
+          ・HTML文を書くと反映されます。やったことある人は書いてみて～divも反映されると思う<br></br>
+          例（書く時は＜＞を半角にしてね）<br></br>
+          ＜button＞ボタンだよ＜button＞<br></br>
+          <button>ボタンだよ</button><br></br>
+
+          ＜a href="https://www.google.com/"＞googleへのパス＜/a＞<br></br>
+          <a href="https://www.google.com/">googleへのパス</a><br></br>
+
+          ＜button onclick="alert('このボタンを押しやがったな。')"＞押してみ＜/button＞<br></br>
+          どうなるかな<br></br><br></br>
+
+
+          【プレビュー画面↓↓】<br></br>
+
           <div dangerouslySetInnerHTML={{ __html: html }} />
+
         </Preview>
       </Wrapper>
       {showModal && (
