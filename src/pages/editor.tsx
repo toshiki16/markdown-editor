@@ -93,7 +93,7 @@ export const Editor: React.FC<props> = (props) => {
         <Preview>
           ・HTML文を書くと反映されます。やったことある人は書いてみて～divも反映されると思う<br></br>
           例（書く時は＜＞を半角にしてね）<br></br>
-          ＜button＞ボタンだよ＜button＞<br></br>
+          ＜button＞ボタンだよ＜/button＞<br></br>
           <button>ボタンだよ</button><br></br>
 
           ＜a href="https://www.google.com/"＞googleへのパス＜/a＞<br></br>
