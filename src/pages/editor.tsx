@@ -47,6 +47,73 @@ const Preview = styled.div`
   right: 0;
   top: 0;
   width: 50vw;
+
+  /*メニューバーのところ*/
+
+summary {
+  width: 60%;
+  margin: 0 auto 5px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #eee;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+summary::after {
+  font-family: "Font Awesome 5 Free";
+  content: "\f0d7";
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s;
+}
+
+.details-content {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.details-content p {
+  width: 95%;
+}
+
+details[open] summary:after {
+  transform: rotate(180deg);
+}
+
+details[open] .details-content {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  summary {
+    width: 90%;
+  }
+
+  .details-content {
+    width: 90%;
+  }
+
+  .details-content p {
+    margin: 10px auto 15px;
+  }
+}
+
+/*ここまで*/
+
 `
 
 interface props {
@@ -76,7 +143,7 @@ export const Editor: React.FC<props> = (props) => {
   return (
     <>
       <HeaderArea>
-        <Header title="PC用のメモ帳的なの兼HTML反映型メモ。#(半角空欄)、-(半角空欄)の後にテキスト書くと...">
+        <Header title="PC用のメモ帳的なの兼HTML反映型メモ">
           <Button onClick={() => setShowModal(true)}>
             保存する
           </Button>
@@ -91,24 +158,45 @@ export const Editor: React.FC<props> = (props) => {
           value={text}
         />
         <Preview>
-          ・HTML文を書くと反映されます。やったことある人は書いてみて～divも反映されると思う<br></br>
-          例（書く時は＜＞を半角にしてね）<br></br>
-          ＜button＞ボタンだよ＜/button＞<br></br>
-          <button>ボタンだよ</button><br></br>
 
-          ＜a href="https://www.google.com/"＞googleへのパス＜/a＞<br></br>
-          <a href="https://www.google.com/">googleへのパス</a><br></br>
 
-          ＜button onclick="alert('このボタンを押しやがったな。')"＞押してみ＜/button＞<br></br>
-          どうなるかな<br></br><br></br>
+          <div className="title-container">
+            <details>
+              <summary>説明</summary>
+              <div className="details-content">
+                <li>
+                  <h3>
+                    PC用のメモ帳的なの兼HTML反映型メモ。#(半角空欄)、-(半角空欄)の後にテキスト書くと...
+                  </h3>
+                  ・HTML文を書くと反映されます。やったことある人は書いてみて～divも反映されると思う<br></br>
+                  例（書く時は＜＞を半角にしてね）<br></br>
+                  ＜button＞ボタンだよ＜/button＞<br></br>
+                  <button>ボタンだよ</button><br></br>
 
+                  ＜a href="https://www.google.com/"＞googleへのパス＜/a＞<br></br>
+                  <a href="https://www.google.com/">googleへのパス</a><br></br>
+
+                  ＜button onclick="alert('このボタンを押しやがったな。')"＞押してみ＜/button＞<br></br>
+                  どうなるかな<br></br><br></br>
+                </li>
+              </div>
+            </details>
+          </div>
 
           【プレビュー画面↓↓】<br></br>
 
           <div dangerouslySetInnerHTML={{ __html: html }} />
 
+
+
+
+
+
+
+
+
         </Preview>
-      </Wrapper>
+      </Wrapper >
       {showModal && (
         <SaveModal
           onSave={(title: string): void => {
